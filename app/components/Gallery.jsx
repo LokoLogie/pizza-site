@@ -50,18 +50,6 @@ export default function Gallery() {
           ))}
         </div>
 
-        <p className="gallery-note">
-          Photos coming soon &mdash; check our{' '}
-          <a
-            href="https://www.facebook.com/people/Brothers-Pizza-Italian-Restaurant/100063523175580/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: 'var(--red)', fontWeight: 600 }}
-          >
-            Facebook page
-          </a>{' '}
-          for the latest pictures and updates!
-        </p>
       </div>
     </section>
   )
