@@ -3,53 +3,104 @@ import { menuCategories } from '../data/menuData'
 function PizzaCategory({ cat }) {
   return (
     <div className="menu-cat-body">
-      <p className="pizza-section-title">Build Your Own Pizza — Cheese Pizza Prices</p>
-      <table className="pizza-size-table">
-        <thead>
-          <tr>
-            <th>Size</th>
-            {cat.sizes.map((s) => (
-              <th key={s}>{s}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td className="row-label">Cheese</td>
-            {cat.cheesePrices.map((p) => (
-              <td key={p}>{p}</td>
-            ))}
-          </tr>
-          <tr>
-            <td className="row-label">Each Topping</td>
-            {cat.toppingPrices.map((p) => (
-              <td key={p}>{p}</td>
-            ))}
-          </tr>
-        </tbody>
-      </table>
 
-      <p className="pizza-section-title">Available Toppings</p>
-      <div className="toppings-grid">
-        {cat.toppings.map((t) => (
-          <span key={t} className="topping-tag">{t}</span>
-        ))}
+      {/* Mini availability note */}
+      {cat.miniNote && (
+        <p className="pizza-mini-note">⏰ {cat.miniNote}</p>
+      )}
+
+      {/* Special deal callout */}
+      {cat.specialDeal && (
+        <div className="pizza-special-deal">
+          <span className="deal-badge">SPECIAL</span>
+          <div className="deal-content">
+            <span className="deal-name">{cat.specialDeal.label}</span>
+            <span className="deal-price">{cat.specialDeal.price}</span>
+          </div>
+          <p className="deal-note">🚗 {cat.specialDeal.note}</p>
+        </div>
+      )}
+
+      {/* Tiered pricing table */}
+      <p className="pizza-section-title">Build Your Own Pizza</p>
+      <div style={{ overflowX: 'auto' }}>
+        <table className="pizza-size-table">
+          <thead>
+            <tr>
+              <th>Toppings</th>
+              {cat.sizes.map((s) => <th key={s}>{s}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {cat.toppingTiers.map((tier) => (
+              <tr key={tier.label}>
+                <td className="row-label">{tier.label}</td>
+                {tier.prices.map((p, i) => <td key={i}>{p}</td>)}
+              </tr>
+            ))}
+            <tr className="pizza-addon-row">
+              <td className="row-label">Each Extra Topping</td>
+              {cat.extraToppingPrices.map((p, i) => <td key={i}>{p}</td>)}
+            </tr>
+            <tr className="pizza-addon-row">
+              <td className="row-label">Add Chicken or Shrimp</td>
+              {cat.chickenShrimpAddon.map((p, i) => <td key={i}>{p}</td>)}
+            </tr>
+          </tbody>
+        </table>
       </div>
 
+      {/* Toppings list */}
+      <p className="pizza-section-title">Available Toppings</p>
+      <div className="toppings-grid">
+        {cat.toppings.map((t) => <span key={t} className="topping-tag">{t}</span>)}
+      </div>
+
+      {/* Specialty pizzas */}
       <p className="pizza-section-title">Specialty Pizzas</p>
       <div className="specialty-pizzas">
         {cat.specialties.map((pizza) => (
           <div key={pizza.name} className="specialty-pizza">
             <p className="specialty-pizza-name">{pizza.name}</p>
-            <p className="specialty-pizza-desc">{pizza.description}</p>
-            <div className="specialty-pizza-prices">
-              {pizza.prices.map((price, i) => (
-                <span key={i} title={cat.sizes[i]}>{cat.sizes[i].split(' ')[1] || cat.sizes[i]}: {price}</span>
-              ))}
-            </div>
+            {pizza.description && <p className="specialty-pizza-desc">{pizza.description}</p>}
+            {pizza.flatPrice ? (
+              <div className="specialty-pizza-prices">
+                <span>{pizza.flatPrice}</span>
+              </div>
+            ) : (
+              <div className="specialty-pizza-prices">
+                {pizza.prices.map((price, i) =>
+                  price ? (
+                    <span key={i} title={cat.sizes[i]}>
+                      {cat.sizes[i].split(' ')[0]}: {price}
+                    </span>
+                  ) : null
+                )}
+              </div>
+            )}
+            {pizza.extraNote && (
+              <p className="specialty-pizza-desc" style={{ marginTop: '0.35rem' }}>
+                {pizza.extraNote}
+              </p>
+            )}
           </div>
         ))}
       </div>
+
+      {/* Wraps */}
+      <p className="pizza-section-title">Wraps</p>
+      <div className="menu-items" style={{ gridTemplateColumns: '1fr' }}>
+        {cat.wraps.map((wrap) => (
+          <div key={wrap.name} className="menu-item">
+            <div className="menu-item-info">
+              <p className="menu-item-name">{wrap.name}</p>
+              {wrap.description && <p className="menu-item-desc">{wrap.description}</p>}
+            </div>
+            <span className="menu-item-price">{wrap.price}</span>
+          </div>
+        ))}
+      </div>
+
     </div>
   )
 }

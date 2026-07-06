@@ -761,6 +761,80 @@ h1, h2, h3, h4 {
   font-family: var(--font-playfair);
 }
 
+.pizza-mini-note {
+  font-family: var(--font-lora);
+  font-style: italic;
+  font-size: 0.875rem;
+  color: var(--red);
+  margin-bottom: 1.25rem;
+  padding: 0.5rem 0.75rem;
+  border-left: 3px solid var(--gold-dark);
+  background: rgba(201, 168, 70, 0.08);
+}
+
+.pizza-special-deal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--green);
+  border: 2px solid var(--gold);
+  border-radius: 3px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.deal-badge {
+  background: var(--gold);
+  color: var(--brown);
+  font-family: var(--font-cinzel);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  padding: 0.25rem 0.65rem;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.deal-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.deal-name {
+  font-family: var(--font-playfair);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cream);
+}
+
+.deal-price {
+  font-family: var(--font-playfair);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.deal-note {
+  width: 100%;
+  margin: 0;
+  font-family: var(--font-lora);
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--cream-dark);
+  opacity: 0.9;
+}
+
+.pizza-addon-row td {
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  border-top: 1px dashed var(--cream-deeper);
+}
+
 .pizza-section-title {
   font-family: var(--font-cinzel);
   font-size: 0.85rem;
